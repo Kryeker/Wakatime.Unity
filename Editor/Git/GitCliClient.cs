@@ -27,12 +27,14 @@ namespace Wakatime
                 startInfo.RedirectStandardOutput = true;
                 startInfo.Arguments = "rev-parse --abbrev-ref HEAD";
 
-                using Process process = new Process();
-                process.StartInfo = startInfo;
-                process.Start();
+                using (Process process = new Process())
+                {
+                    process.StartInfo = startInfo;
+                    process.Start();
 
-                string branchname = process.StandardOutput.ReadLine();
-                return branchname;
+                    string branchname = process.StandardOutput.ReadLine();
+                    return branchname;
+                }
             }
             catch (Exception ex)
             {

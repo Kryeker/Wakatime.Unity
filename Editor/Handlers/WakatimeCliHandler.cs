@@ -4,7 +4,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Timers;
-using UnityEditor.SearchService;
 using UnityEngine;
 
 namespace Wakatime
@@ -134,7 +133,7 @@ namespace Wakatime
                 _timer.Dispose();
             }
 
-            // make sure the queue is empty	
+            // make sure the queue is empty
             ProcessHeartbeats();
         }
 

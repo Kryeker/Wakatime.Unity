@@ -31,7 +31,8 @@ namespace Wakatime
                 if (property.GetCustomAttribute<SettingAttribute>() is SettingAttribute attribute)
                 {
                     SettingHandler handler = handlers.FirstOrDefault(h => h.Type == property.PropertyType);
-                    handler ??= handlers.FirstOrDefault(h => h.Type == property.PropertyType.BaseType);
+                    if (handler == null)
+                        handler = handlers.FirstOrDefault(h => h.Type == property.PropertyType.BaseType);
                     if (handler != null)
                     {
                         handler.Load(property, result, attribute.Key);
@@ -53,7 +54,8 @@ namespace Wakatime
                 if (property.GetCustomAttribute<SettingAttribute>() is SettingAttribute attribute)
                 {
                     SettingHandler handler = handlers.FirstOrDefault(h => h.Type == property.PropertyType);
-                    handler ??= handlers.FirstOrDefault(h => h.Type == property.PropertyType.BaseType);
+                    if (handler == null)
+                        handler = handlers.FirstOrDefault(h => h.Type == property.PropertyType.BaseType);
                     if (handler != null)
                     {
                         handler.Save(property, settings, attribute.Key);

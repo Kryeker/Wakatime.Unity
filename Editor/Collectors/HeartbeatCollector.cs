@@ -60,7 +60,8 @@ namespace Wakatime
 
         private string GetEntity(UnityEngine.SceneManagement.Scene? scene = null)
         {
-            scene ??= EditorSceneManager.GetActiveScene();
+            if (scene == null)
+                scene = EditorSceneManager.GetActiveScene();
             var currentScene = scene?.path;
             string entity = "Unsaved Scene";
             if (!string.IsNullOrEmpty(currentScene))
