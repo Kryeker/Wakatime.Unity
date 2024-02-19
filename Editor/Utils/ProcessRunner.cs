@@ -1,6 +1,7 @@
 ﻿#if (UNITY_EDITOR)
 using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using UnityEditor.PackageManager;
@@ -63,7 +64,7 @@ namespace Wakatime
                     RedirectStandardError = _captureOutput,
                     RedirectStandardOutput = _captureOutput,
                     RedirectStandardInput = _stdin != null,
-                    FileName = _program,
+                    FileName = Path.IsPathRooted(_program) ? _program : Path.Combine(Directory.GetCurrentDirectory(), _program),
                     CreateNoWindow = true,
                     Arguments = _arguments,
                     WindowStyle = ProcessWindowStyle.Hidden,
